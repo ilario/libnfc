@@ -397,7 +397,7 @@ pn532_uart_receive(nfc_device *pnd, uint8_t *pbtData, const size_t szDataLen, in
 
   const uint8_t pn53x_preamble[3] = { 0x00, 0x00, 0xff };
   if (0 != (memcmp(abtRxBuf, pn53x_preamble, 3))) {
-    log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR, "%s%02X%02X%02X", "Frame preamble+start code mismatch", abtRxBuf[1], abtRxBuf[2], abtRxBuf[3]);
+    log_put(LOG_GROUP, LOG_CATEGORY, NFC_LOG_PRIORITY_ERROR, "%s%02X%02X%02X%02X%02X%02X", "Frame preamble+start code mismatch", abtRxBuf[0], abtRxBuf[1], abtRxBuf[2]), abtRxBuf[3], abtRxBuf[4], abtRxBuf[5]);
     pnd->last_error = NFC_EIO;
     goto error;
   }
